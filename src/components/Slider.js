@@ -20,14 +20,15 @@ class Slider extends React.Component{
 					eachSlide: `url(${Slide_3})`
 				},
 				{
-					eachSlider: `url(${Slide_4})`
+					eachSlide: `url(${Slide_2})`
 				},
+				
 			],
 
 			autoplay: false,
 			active: 0,
 			max: 0,
-		}
+		};
 		this.state.max = this.state.slides.length;
 		this.intervalBetweenSlides = this.intervalBetweenSlides.bind(this);
 		this.toggleAutoPlay = this.toggleAutoPlay.bind(this);
@@ -53,14 +54,14 @@ class Slider extends React.Component{
 
 			this.setState({
 				active: this.state.active
-			})
+			});
 		}
 	}
   
 	toggleAutoPlay(){
 		this.setState({
 			autoplay: !this.state.autoplay
-		})
+		});
 	}
 
 	nextOne(){
@@ -70,7 +71,7 @@ class Slider extends React.Component{
 		}):
 		this.setState({
 			active: 0
-		})
+		});
 	}
 
 	prevOne(){
@@ -80,18 +81,18 @@ class Slider extends React.Component{
 		}):
 		this.setState({
 			active: this.state.max - 1
-		})
+		});
 	}
 
-	dots(index, event){
+	dots(index){
 		this.setState({
 			active: index
-		})
+		});
 	}
 
 	isActive(value){
 		if(this.state.active === value){
-			return 'active'
+			return 'active';
 		}
 	}
 
@@ -101,16 +102,15 @@ class Slider extends React.Component{
 		return{
 			width: (this.state.slides.length * 100) + "%",
 			transform: `translateX(${transition}%)`
-		}
+		};
 	}
 
 	renderSlides(){
 		const transition = 100 / this.state.slides.length + "%";
-		return
-			this.state.slides.map((item, index) =>(
+		return this.state.slides.map((item, index) => (
 					<div
 						className='each-slide'
-						key = {index}
+						key = {index+1}
 						style = {{backgroundImage: item.eachSlide, width: transition}}>
 
 					</div>
@@ -129,7 +129,7 @@ class Slider extends React.Component{
 			<a>&#9679;</a>
 			</li>
 
-			))
+			));
 	}
 
 	renderPlayStop(){
